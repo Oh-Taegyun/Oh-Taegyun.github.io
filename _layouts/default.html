@@ -1,38 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+---
+---
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% seo %}
-    <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
+    {% include head.html %}
+    {% include head/custom.html %}
   </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="{{ "/" | relative_url }}">Home</a></li>
-        <li><a href="{{ "/about" | relative_url }}">About</a></li>
-      </ul>
-    </nav>
-    <div class="container">
+
+  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
+    {% include_cached skip-links.html %}
+    {% include_cached masthead.html %}
+
+    <div class="initial-content">
       {{ content }}
     </div>
-    <footer>
-      <p>&copy; {{ site.time | date: '%Y' }} - My Awesome Blog</p>
-    </footer>
-    <script src="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.js"></script>
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css" rel="stylesheet" />
-    <script>
-      mapboxgl.accessToken = 'YOUR_ACCESS_TOKEN';
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: [126.977977, 37.566535],
-        zoom: 12
-      });
 
-      var marker = new mapboxgl.Marker()
-        .setLngLat([126.977977, 37.566535])
-        .addTo(map);
-    </script>
+    {% if site.search == true %}
+      <div class="search-content">
+        {% include_cached search/search_form.html %}
+      </div>
+    {% endif %}
+
+    <div id="footer" class="page__footer">
+      <footer>
+        {% include footer/custom.html %}
+        {% include_cached footer.html %}
+      </footer>
+    </div>
+
+    {% include scripts.html %}
+
   </body>
 </html>
