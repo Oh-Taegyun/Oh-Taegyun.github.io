@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Community Mapping Project</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <!-- Leaflet.js 맵이 나타날 div -->
+    <div id="mapid" style="height: 500px;"></div>
+
+    <!-- Leaflet.js 코드 -->
+    <script>
+      var map = L.map("mapid").setView([37.5665, 126.9780], 13);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "Map data &copy; <a href='https://www.openstreetmap.org/'>OpenStreetMap</a> contributors",
+        maxZoom: 18,
+      }).addTo(map);
+
+      L.marker([37.5665, 126.9780]).addTo(map).bindPopup("서울 시청").openPopup();
+    </script>
+  </body>
+</html>
